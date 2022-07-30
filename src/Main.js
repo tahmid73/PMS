@@ -1,6 +1,7 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from "./AllUserComponents/Login";
 import Registration from "./AllUserComponents/Registration";
+import Home from "./AllUserComponents/Home";
 import Top from "./AllUserComponents/Top";
 import TopBar from "./AllUserComponents/TopBar";
 const Main=()=>{
@@ -10,6 +11,7 @@ const Main=()=>{
         <Routes>
             <Route path="/" element={<Login/>}/>
             <Route path="/Registration" element={<Registration/>}/>
+            <Route path="/home" element={<Login/>}/>
         </Routes>
         </BrowserRouter>
     )
