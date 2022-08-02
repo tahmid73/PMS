@@ -3,9 +3,9 @@ import Login from "./AllUserComponents/Login";
 import Registration from "./AllUserComponents/Registration";
 import Home from "./AllUserComponents/Home";
 import Top from "./AllUserComponents/Top";
-import TopBar from "./AllUserComponents/TopBar";
 import LoggedCourierTop from "./CourierComponents/LoggedCourierHome";
 import LoggedCourierHome from "./CourierComponents/LoggedCourierHome";
+import CustomerHome from "./CustomerComponents/CustomerHome";
 
 const Main=()=>{
     return(
@@ -16,6 +16,7 @@ const Main=()=>{
             <Route path="/Registration" element={<Registration/>}/>
             <Route path="/home" element={<Home/>}/>
             <Route path="/courier/home" element={<LoggedCourierHome/>}/>
+            <Route path="/customer/home" element={<CustomerHome/>}/>
         </Routes>
         </BrowserRouter>
     )

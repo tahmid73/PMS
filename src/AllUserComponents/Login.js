@@ -1,11 +1,10 @@
 import axios from "axios";
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Navigate } from "react-router-dom";
 function Login(){
     //const history = useHistory();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    // const [url,setUrl] = useState("");
     const [errs,setErrs] = useState("");
     const [user,setUser] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -13,27 +12,32 @@ function Login(){
     const handleLogin=(event)=>{
         event.preventDefault();
         const data={u_email:email,u_pass:password};
-        axios.get(`http://localhost:8000/api/user/get/${email}`,data)
-        .then((rsp)=>{
-            debugger;
-            if(rsp.data.u_pass===password){
-                console.log("logged");
-                setIsSubmitted(true);
+        // debugger;
+        axios.post("http://localhost:8000/api/login",data).
+        then((succ)=>{
+            var token=succ.data.token;
+            localStorage.setItem("token",token);
+            // debugger;
+            axios.get(`http://localhost:8000/api/user/get/${email}`,data)
+            .then((rsp)=>{
+                debugger;
                 if(rsp.data.u_type==="COURIER"){
                     setHomeUrl("/courier/home")
                 }
-            }
-            else{
-                console.log("wrong password");
-                setErrs(rsp.data);
+                else if (rsp.data.u_type=="CUSTOMER"){
+                    window.location.href="/customer/home";
+                }
+            },(error)=>{
                 debugger;
+                setErrs(error.response.data);
             }
-        }
-        ,(err)=>{
+            )
+        },(err)=>{
+            console.log("error");
             debugger;
-            setErrs(err.response.data);
         }
         )
+        
     }
 
     const loginForm = (
