@@ -6,7 +6,7 @@ import Top from "./AllUserComponents/Top";
 import TopBar from "./AllUserComponents/TopBar";
 import LoggedCourierTop from "./CourierComponents/LoggedCourierHome";
 import LoggedCourierHome from "./CourierComponents/LoggedCourierHome";
-
+import './index.css';
 const Main=()=>{
     return(
         <BrowserRouter>

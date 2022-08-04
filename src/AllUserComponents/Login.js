@@ -23,6 +23,12 @@ function Login(){
                 if(rsp.data.u_type==="COURIER"){
                     setHomeUrl("/courier/home")
                 }
+                else if(rsp.data.u_type==="MANAGER"){
+                    setHomeUrl("/home")
+                }
+                else if(rsp.data.u_type==="COURIER"){
+                    setHomeUrl("/courier/home")
+                }
             }
             else{
                 console.log("wrong password");

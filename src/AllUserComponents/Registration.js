@@ -12,8 +12,8 @@ const Registration=()=>{
     }
     return(
         <fieldset> 
-            <button onClick={()=>{setType("CUSTOMER")}} value={"CUSTOMER"}>Customer</button>
-            <button onClick={()=>{setType("VENDOR")}} value={"VENDOR"}>Vendor</button>
+            <button onClick={()=>{setType("CUSTOMER")}} value={"CUSTOMER"} className="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">Customer</button>
+            <button onClick={()=>{setType("VENDOR")}} value={"VENDOR"} className="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">Vendor</button>
             <button onClick={()=>{setType("MANAGER")}} value={"MANAGER"}>Manager</button>
             <button onClick={()=>{setType("COURIER")}} value={"COURIER"}>Courier</button>   
         <form onSubmit={handleRegistration}>          
