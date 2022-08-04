@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import axiosConfig from "./axiosConfig";
 
 const Registration=()=>{
 
@@ -14,7 +15,7 @@ const Registration=()=>{
         // debugger;
         event.preventDefault();
         const data={name:name,email:email,password:password,type:type};
-        axios.post("http://localhost:8000/api/user/create",data).
+        axiosConfig.post("user/create",data).
         then((succ)=>{
             setSucc(succ.data);
             // debugger;

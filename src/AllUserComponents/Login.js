@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Navigate } from "react-router-dom";
+import axiosConfig from  './axiosConfig';
 function Login(){
     //const history = useHistory();
     const [email,setEmail] = useState("");
@@ -13,16 +13,17 @@ function Login(){
         event.preventDefault();
         const data={u_email:email,u_pass:password};
         // debugger;
-        axios.post("http://localhost:8000/api/login",data).
+        axiosConfig.post("login",data).
         then((succ)=>{
             var token=succ.data.token;
-            localStorage.setItem("token",token);
+            localStorage.setItem("_authToken",token);
             // debugger;
-            axios.get(`http://localhost:8000/api/user/get/${email}`,data)
+            axiosConfig.get(`user/get/${email}`,data)
             .then((rsp)=>{
                 debugger;
                 if(rsp.data.u_type==="COURIER"){
-                    setHomeUrl("/courier/home")
+                    // setHomeUrl("/courier/home")
+                    window.location.href="/courier/home";
                 }
                 else if (rsp.data.u_type=="CUSTOMER"){
                     window.location.href="/customer/home";
@@ -39,8 +40,7 @@ function Login(){
         )
         
     }
-
-    const loginForm = (
+    return(
         <div>
         <form onSubmit={handleLogin}>
             Email: <input onChange={(e)=>{setEmail(e.target.value)}} type="email" name="email" value={email}/> <br/><br/>
@@ -49,14 +49,6 @@ function Login(){
             <span>{errs? errs.password[0]:''}</span>
             <input type="submit" value="Login"/>
         </form>
-        
-        </div>  
-    )
-    return(
-        <div>
-        <fieldset>
-        {isSubmitted ? <Navigate to={homeUrl}/> : loginForm}            
-        </fieldset>
         </div>
     )
 }

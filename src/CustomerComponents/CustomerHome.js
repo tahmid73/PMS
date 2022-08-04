@@ -1,18 +1,14 @@
-import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axiosConfig from "./../AllUserComponents/axiosConfig"
 
 const CustomerHome=()=>{
+    const[user,setUser]=useState([]);
     useEffect(()=>{
-        axios.defaults.headers.common["Authorization"]=localStorage.getItem("token");
-        axios.get("http://localhost:8000/api/customer/home").
-        then((rsp)=>{
-            console.log("true");
-            debugger;
-        },(err)=>{
-            console.log("false");
-            debugger;
-        })
-    })
+        axiosConfig.get("alluser/get").then((rsp)=>{
+        setUser(rsp.data);
+        debugger;
+        },(err)=>{})
+    },[]);
     return(
         <div>
             <h3>henlo</h3>
