@@ -1,10 +1,10 @@
-import TopBar from './TopBar';
+import TopBar from '../AllUserComponents/TopBar';
 import {Link} from 'react-router-dom';
 const LoggedCourierTop=()=>{
     return(
-        <div className='bg-black'>
+        <div>
             <TopBar url="/home" value="Home"/>
-            <TopBar url="/logout" value="Logout"/>
+            {/* <TopBar url="/logout" value="Logout"/> */}
         </div>
     )
 }

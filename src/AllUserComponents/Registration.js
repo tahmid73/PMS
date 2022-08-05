@@ -30,10 +30,12 @@ const Registration=()=>{
     }
     return(
         <fieldset> 
+            <div className="space-x-3">
             <button onClick={()=>{setType("CUSTOMER")}} value={"CUSTOMER"}>Customer</button>
             <button onClick={()=>{setType("VENDOR")}} value={"VENDOR"}>Vendor</button>
             <button onClick={()=>{setType("MANAGER")}} value={"MANAGER"}>Manager</button>
             <button onClick={()=>{setType("COURIER")}} value={"COURIER"}>Courier</button>   
+            </div>
         <form onSubmit={handleRegistration}>     
             <br/>     
             Name: <input onChange={(e)=>{setName(e.target.value)}} type="text" name="name" value={name}/> <br/>
