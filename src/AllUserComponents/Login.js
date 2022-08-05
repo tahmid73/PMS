@@ -2,13 +2,9 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { Navigate } from "react-router-dom";
 import axiosConfig from  './axiosConfig';
 function Login(){
-    //const history = useHistory();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [errs,setErrs] = useState("");
-    const [user,setUser] = useState([]);
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [homeUrl,setHomeUrl] = useState("");
     const handleLogin=(event)=>{
         event.preventDefault();
         const data={u_email:email,u_pass:password};
@@ -22,7 +18,6 @@ function Login(){
             .then((rsp)=>{
                 //debugger;
                 if(rsp.data.u_type==="COURIER"){
-                    // setHomeUrl("/courier/home")
                     window.location.href="/courier/home";
                 }
                 else if (rsp.data.u_type=="CUSTOMER"){

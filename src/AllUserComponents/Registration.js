@@ -37,6 +37,8 @@ const Registration=()=>{
             <button onClick={()=>{setType("COURIER")}} value={"COURIER"}>Courier</button>   
             </div>
         <form onSubmit={handleRegistration}>     
+            <br/>
+            Register As : <input onChange={(e)=>{setType(e.target.value)}} type="text" name="type" value={type} readOnly/> <br/>
             <br/>     
             Name: <input onChange={(e)=>{setName(e.target.value)}} type="text" name="name" value={name}/> <br/>
             <span>{errs.name? errs.name[0]:''}</span><br/>
