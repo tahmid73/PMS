@@ -1,9 +1,16 @@
-import {Link} from 'react-router-dom';
 import LoggedCourierTop from "./LoggedCourierTop";
-import Top from "../AllUserComponents/Top";
-// import "../index.css"
+import axiosConfig from "./../AllUserComponents/axiosConfig"
+import { useEffect, useState } from "react";
+import "../index.css"
 
 const LoggedCourierHome=()=>{
+    const [user,setUser]=useState([]);
+    useEffect(()=>{
+        axiosConfig.get("courier/orders").then((rsp)=>{
+        setUser(rsp.data);
+        debugger;
+        },(err)=>{})
+    },[]);
     return(
         <div className="">
             <h2>
