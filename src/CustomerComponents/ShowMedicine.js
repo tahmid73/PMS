@@ -3,7 +3,10 @@ import axiosConfig from './../AllUserComponents/axiosConfig';
 import {Link} from 'react-router-dom';
 const ShowMedicine=()=>{
     const[med,setMed] = useState([]);
+    const[med_id,setMed_id]=useState();
     const[quantity,setQuantity] = useState([]);
+    const [errs,setErrs] = useState({});
+    const [succ,setSucc] = useState({});
     useEffect(()=>{
         axiosConfig.get("customer/medlist").then((rsp)=>{
         setMed(rsp.data);
@@ -20,6 +23,25 @@ const ShowMedicine=()=>{
 
         })
     }
+
+
+    const handleQuantity=(event)=>{
+        // debugger;
+        event.preventDefault();
+        const data={med_id:med_id,quantity:quantity};
+        axiosConfig.post("customer/add/cart",data).
+        then((succ)=>{
+            setSucc(succ.data);
+            debugger;
+            window.location.href="customer/medlist";
+        },(err)=>{
+            setErrs(err.response.data);
+            console.log(data);
+            debugger;
+        }
+
+        )
+    }
     return(
         <div>
             <button onClick={loadData}>Load Data</button>
@@ -34,6 +56,7 @@ const ShowMedicine=()=>{
                     med.map((m)=>
                     <tr key={m.med_id}>
                     <td>{ m.med_name }</td>
+                    {/* {setMed_id(m.med_id)} */}
                     <td>{ m.price_perUnit }</td>
                     {
                         m.Stock=='0' &&
@@ -45,9 +68,13 @@ const ShowMedicine=()=>{
                     }
                     <td>
                         {
-                            <form>
+                            <form onSubmit={handleQuantity}>
+                                {/* <input type="number" name="med_id" onChange={(e)=>{setMed_id(e.target.value)}} value={med_id}/> */}
                                 <input type="number" name="quantity" min={0} onChange={(e)=>{setQuantity(e.target.value)}} placeholder="Type quantity here" value={quantity[m.med_id]}/>
+                                <input type="submit" name="cart" value="ADD TO CART"/>
+
                             </form>
+
                         }
                     </td>
                     </tr>
