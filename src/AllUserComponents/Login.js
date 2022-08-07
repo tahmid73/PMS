@@ -16,7 +16,7 @@ function Login(){
             // debugger;
             axiosConfig.get(`user/get/${email}`,data)
             .then((rsp)=>{
-                debugger;
+                //debugger;
                 if(rsp.data.u_type==="COURIER"){
                     window.location.href="/courier/home";
                 }

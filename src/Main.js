@@ -12,7 +12,6 @@ import ShowMedicine from "./CustomerComponents/ShowMedicine";
 const Main=()=>{
     return(
         <BrowserRouter>
-        <h3><Top/></h3>
         <Routes>
             <Route path="/" element={<Login/>}/>
             <Route path="/Registration" element={<Registration/>}/>
@@ -21,7 +20,7 @@ const Main=()=>{
             <Route path="/customer/home" element={<CustomerHome/>}/>
             <Route path="/customer/medlist" element={<ShowMedicine/>}/>
         </Routes>
-        <Logout/>
+        {/* <Logout/> */}
         </BrowserRouter>
     )
 }
