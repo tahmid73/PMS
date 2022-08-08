@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import axiosConfig from "./axiosConfig";
+import Top from "./Top";
 
 const Registration=()=>{
 
@@ -29,6 +30,8 @@ const Registration=()=>{
         )
     }
     return(
+        <div>
+        <h2><Top/></h2>
         <fieldset> 
             <div className="space-x-3">
             <button onClick={()=>{setType("CUSTOMER")}} value={"CUSTOMER"}>Customer</button>
@@ -52,7 +55,7 @@ const Registration=()=>{
         </form>
         {succ.msg}
         </fieldset>
-
+        </div>
     )
 }
 

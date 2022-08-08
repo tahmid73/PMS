@@ -12,6 +12,7 @@ import ShowMedicine from "./CustomerComponents/ShowMedicine";
 const Main=()=>{
     return(
         <BrowserRouter>
+        {/* <h2><Top/></h2> */}
         <Routes>
             <Route path="/" element={<Login/>}/>
             <Route path="/Registration" element={<Registration/>}/>
