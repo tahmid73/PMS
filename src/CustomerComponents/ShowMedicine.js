@@ -69,7 +69,7 @@ const ShowMedicine=()=>{
                     <td>
                         {
                             <form onSubmit={handleQuantity}>
-                                {/* <input type="number" name="med_id" onChange={(e)=>{setMed_id(e.target.value)}} value={med_id}/> */}
+                                <input type="number" name="med_id" onChange={(e)=>{setMed_id(e.target.value)}} value={med_id}/>
                                 <input type="number" name="quantity" min={0} onChange={(e)=>{setQuantity(e.target.value)}} placeholder="Type quantity here" value={quantity[m.med_id]}/>
                                 <input type="submit" name="cart" value="ADD TO CART"/>
 
