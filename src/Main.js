@@ -8,6 +8,7 @@ import LoggedCourierHome from "./CourierComponents/LoggedCourierHome";
 import CustomerHome from "./CustomerComponents/CustomerHome";
 import Logout from "./AllUserComponents/Logout";
 import ShowMedicine from "./CustomerComponents/ShowMedicine";
+import CustomerCart from "./CustomerComponents/CustomerCart";
 
 const Main=()=>{
     return(
@@ -20,6 +21,7 @@ const Main=()=>{
             <Route path="/courier/home" element={<LoggedCourierHome/>}/>
             <Route path="/customer/home" element={<CustomerHome/>}/>
             <Route path="/customer/medlist" element={<ShowMedicine/>}/>
+            <Route path="/customer/cart" element={<CustomerCart/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>

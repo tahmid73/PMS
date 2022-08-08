@@ -1,9 +1,10 @@
+import CustomerTop from "./CustomerTop";
 
 const CustomerTopBar=()=>{
     return(
         <div>
-            <TopBar url="/" value="Login || "/>
-            <TopBar url="/Registration" value="Register"/>
+            <CustomerTop url="/customer/medlist" value="Medicine List || "/>
+            <CustomerTop url="/customer/cart" value="Cart || "/>
         </div>
     )
 }
