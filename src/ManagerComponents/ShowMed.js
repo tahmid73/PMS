@@ -3,6 +3,7 @@ import axiosConfig from "./../AllUserComponents/axiosConfig"
 
 const ShowMed=()=>{
     const [val,getVal]=useState([])
+    const [medId,setId]=useState('')
 
     useEffect(()=>{
         axiosConfig.get("manager/medicine")
@@ -16,6 +17,21 @@ const ShowMed=()=>{
         })
 
     },[])
+
+    const deleteMed=(event)=>{
+        event.preventDefault();
+        const data={m_id:medId};
+        debugger;
+        axiosConfig.post("manager/deleteMed",data).then(
+            (succ)=>{
+                debugger;
+                window.location.href="/manager/medicine";
+
+            },(err)=>{
+                debugger;
+                console.log(err);
+            }
+        )}
     return(
         <div>
             <h3>Medicine List</h3>
@@ -39,9 +55,16 @@ const ShowMed=()=>{
                                     }
                                     {
                                         v.Stock!=0 &&
-                                        <td>{v.stock}</td>
+                                        <td>{v.Stock}</td>
                                     }
                                 <td>{v.expiryDate}</td>
+                                <td>
+                                    {
+                                    <form onSubmit={deleteMed}>
+                                        <input type="submit" onClick={(e)=>{setId(v.med_id)}} name="delete" value="DELETE"/>
+                                    </form>
+                                    }
+                                </td>
                             </tr>
                         )
                     }

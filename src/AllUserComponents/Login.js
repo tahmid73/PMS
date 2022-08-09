@@ -26,6 +26,9 @@ function Login(){
                 else if (rsp.data.u_type=="CUSTOMER"){
                     window.location.href="/customer/home";
                 }
+                else if (rsp.data.u_type=="MANAGER"){
+                    window.location.href="/manager/home";
+                }
             },(error)=>{
                 debugger;
                 setErrs(error.response.data);
