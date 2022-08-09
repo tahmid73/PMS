@@ -15,6 +15,10 @@ import CustomerGrandtotal from "./CustomerComponents/CustomerGrandtotal";
 import CustomerOrderPlaced from "./CustomerComponents/CustomerOrderPlaced";
 import CustomerOrders from "./CustomerComponents/CustomerOrders";
 import CustomerReturn from "./CustomerComponents/CustomerReturn";
+import ManagerHome from "./ManagerComponents/ManagerHome";
+import ShowOrders from "./ManagerComponents/ShowOrders";
+import ShowSupply from "./ManagerComponents/ShowSupply";
+import ShowCart from "./ManagerComponents/ShowCart";
 
 const Main=()=>{
     return(
@@ -40,6 +44,10 @@ const Main=()=>{
             {/* MANAGER ---> MANAGER */}
             <Route path="/manager/medicine" element={<ShowMed/>}/>
             <Route path="/manager/user" element={<ShowUser/>}/>
+            <Route path="/manager/home" element={<ManagerHome/>}/>
+            <Route path="/manager/orders" element={<ShowOrders/>}/>
+            <Route path="/manager/supply" element={<ShowSupply/>}/>
+            <Route path="/manager/cart" element={<ShowCart/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>
