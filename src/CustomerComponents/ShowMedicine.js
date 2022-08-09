@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react';
 import axiosConfig from './../AllUserComponents/axiosConfig';
 import {Link} from 'react-router-dom';
 import CustomerTopBar from './CustomerTopBar';
+import Logout from '../AllUserComponents/Logout';
 const ShowMedicine=()=>{
     const[med,setMed] = useState([]);
     const[med_id,setMed_id]=useState();
@@ -86,6 +87,7 @@ const ShowMedicine=()=>{
 
                     
             </table>
+            <Logout/>
         </div>
     )
 }

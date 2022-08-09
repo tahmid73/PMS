@@ -9,6 +9,8 @@ import CustomerHome from "./CustomerComponents/CustomerHome";
 import Logout from "./AllUserComponents/Logout";
 import ShowMedicine from "./CustomerComponents/ShowMedicine";
 import CustomerCart from "./CustomerComponents/CustomerCart";
+import ShowMed from "./ManagerComponents/ShowMed";
+import ShowUser from "./ManagerComponents/ShowUser";
 
 const Main=()=>{
     return(
@@ -22,6 +24,8 @@ const Main=()=>{
             <Route path="/customer/home" element={<CustomerHome/>}/>
             <Route path="/customer/medlist" element={<ShowMedicine/>}/>
             <Route path="/customer/cart" element={<CustomerCart/>}/>
+            <Route path="/manager/medicine" element={<ShowMed/>}/>
+            <Route path="/manager/user" element={<ShowUser/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>
