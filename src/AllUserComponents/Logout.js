@@ -6,7 +6,7 @@ const Logout=()=>{
         debugger;
         window.location.href="/";
     },(error)=>{
-
+        debugger
     })
     }
     return(
