@@ -1,9 +1,12 @@
 import {useState,useEffect} from 'react';
 import axiosConfig from './../AllUserComponents/axiosConfig';
 import {Link} from 'react-router-dom';
+import CustomerTopBar from './CustomerTopBar';
+import Logout from '../AllUserComponents/Logout';
 const ShowMedicine=()=>{
     const[med,setMed] = useState([]);
     const[med_id,setMed_id]=useState();
+    const[stock,setStock]=useState();
     const[quantity,setQuantity] = useState([]);
     const [errs,setErrs] = useState({});
     const [succ,setSucc] = useState({});
@@ -28,7 +31,7 @@ const ShowMedicine=()=>{
     const handleQuantity=(event)=>{
         // debugger;
         event.preventDefault();
-        const data={med_id:med_id,quantity:parseInt(quantity)};
+        const data={med_id:med_id,quantity:parseInt(quantity),Stock:stock};
         debugger;
         axiosConfig.post("customer/add/cart",data).
         then((succ)=>{
@@ -45,6 +48,7 @@ const ShowMedicine=()=>{
     }
     return(
         <div>
+            <h3><CustomerTopBar/></h3>
             <button onClick={loadData}>Load Data</button>
             <table border="1">
                 <tr>
@@ -70,7 +74,7 @@ const ShowMedicine=()=>{
                     <td>
                         {
                             <form onSubmit={handleQuantity}>
-                                <input type="number" name="quantity" min={0} onChange={(e)=>{setQuantity(e.target.value);setMed_id(m.med_id)}} placeholder="Type quantity here" value={quantity[m.med_id]}/>
+                                <input type="number" name="quantity" min={0} onChange={(e)=>{setQuantity(e.target.value);setMed_id(m.med_id);setStock(m.Stock);}} placeholder="Type quantity here" value={quantity[m.med_id]}/>
                                 <input type="submit" name="cart" value="ADD TO CART"/> 
                             </form>
 
@@ -82,6 +86,7 @@ const ShowMedicine=()=>{
 
                     
             </table>
+            <Logout/>
         </div>
     )
 }

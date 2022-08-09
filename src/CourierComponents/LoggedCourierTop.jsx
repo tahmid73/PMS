@@ -2,7 +2,18 @@ import TopBar from '../AllUserComponents/TopBar';
 import logout from "../AllUserComponents/Logout";
 import {Link} from 'react-router-dom';
 import Logout from '../AllUserComponents/Logout';
+import axiosConfig from "./../AllUserComponents/axiosConfig"
+
 const LoggedCourierTop=()=>{
+    const logout=()=>{
+        axiosConfig.post("logout").then
+        ((rsp)=>{
+            debugger;
+            window.location.href="/";
+        },(error)=>{
+    
+        })
+        }
     return(
         <div>
             <ul>
