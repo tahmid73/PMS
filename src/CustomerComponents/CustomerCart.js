@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import Logout from "../AllUserComponents/Logout";
 import axiosConfig from "./../AllUserComponents/axiosConfig"
+import CustomerGrandtotal from "./CustomerGrandtotal";
 import CustomerTopBar from "./CustomerTopBar";
 
 const CustomerCart=()=>{
@@ -36,13 +38,26 @@ const CustomerCart=()=>{
 
         )
     }
+
+    const placeOrder=(event)=>{
+        debugger;
+        axiosConfig.post("customer/confirmOrder").then
+        ((rsp)=>{
+            debugger;
+            window.location.href="/customer/orderplaced";
+        },(err)=>{
+
+        })
+        
+    }
     return(
         <div>
             <h3><CustomerTopBar/></h3>
             <span><br/><br/>{
             errs.msg
             ?   <h3>{errs.msg}</h3>
-            :   <table border="1">
+            :   <div>
+                <table border="1">
                     <tr>
                         <th>Medicine Name</th>
                         <th>Price per Unit</th>
@@ -59,7 +74,7 @@ const CustomerCart=()=>{
                         <td>
                             {
                                 <form onSubmit={deleteItem}>
-                                    <input type="submit" onClick={(e)=>{setMed_id(item.med_id);setItem_id(item.item_id)}} name="delete" value="DELETE"/>
+                                    <input type="submit" onClick={(e)=>{setMed_id(item.med_id);setItem_id(item.item_id)}} name="delete" value="REMOVE"/>
                                 </form>
                             }
                         </td>
@@ -69,8 +84,16 @@ const CustomerCart=()=>{
 
                         
                 </table>
+                <br/>
+                <CustomerGrandtotal/>
+                <br/>
+                <a href="/customer/medlist">CONTINUE SHOPPING?</a> 
+                <button onClick={placeOrder}> PLACE ORDER</button>
+                </div>
                 }
             </span><br/>
+            <br/>
+            <Logout/>
         </div>
     )
 }

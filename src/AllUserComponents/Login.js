@@ -41,13 +41,22 @@ function Login(){
     return(
         <div>
         <h2><Top/></h2>
-        <form onSubmit={handleLogin}>
-            Email: <input onChange={(e)=>{setEmail(e.target.value)}} type="email" name="email" value={email}/> <br/><br/>
-            <span>{errs.email? errs.email[0]:''}</span>
-            Password: <input onChange={(e)=>{setPassword(e.target.value)}} type="password" name="password" value={password}/> <br/><br/>
-            <span>{errs? errs.password[0]:''}</span>
-            <input type="submit" value="Login"/>
-        </form>
+        <center>
+                <br/>
+            <fieldset style={{width:"50%"}}>
+                <br/>
+                <center>
+                <form onSubmit={handleLogin}>
+                    Email: <input onChange={(e)=>{setEmail(e.target.value)}} size={30} type="email" name="email" value={email}/> <br/><br/>
+                    <span>{errs.email? errs.email[0]:''}</span>
+                    Password: <input onChange={(e)=>{setPassword(e.target.value)}} type="password" name="password" value={password}/> <br/><br/>
+                    <span>{errs? errs.password[0]:''}</span>
+                    <input type="submit" value="Login"/>
+                </form>
+                </center>           
+            </fieldset>
+        </center>
+        
         </div>
     )
 }

@@ -19,14 +19,6 @@ const ShowMedicine=()=>{
         })
 
     },[quantity]);
-    const loadData=()=>{
-        axiosConfig.get("customer/medlist").then((rsp)=>{
-        setMed(rsp.data);
-        },(er)=>{
-
-        })
-    }
-
 
     const handleQuantity=(event)=>{
         // debugger;
@@ -49,7 +41,6 @@ const ShowMedicine=()=>{
     return(
         <div>
             <h3><CustomerTopBar/></h3>
-            <button onClick={loadData}>Load Data</button>
             <table border="1">
                 <tr>
                     <th>Medicine Name</th>
@@ -87,6 +78,7 @@ const ShowMedicine=()=>{
 
                     
             </table>
+            <br/>
             <Logout/>
         </div>
     )
