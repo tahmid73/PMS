@@ -1,6 +1,9 @@
+import axios from "axios";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Navigate } from "react-router-dom";
 import axiosConfig from  './axiosConfig';
+import Top from "./Top";
+
 function Login(){
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -37,6 +40,7 @@ function Login(){
     }
     return(
         <div>
+        <h2><Top/></h2>
         <form onSubmit={handleLogin}>
             Email: <input onChange={(e)=>{setEmail(e.target.value)}} type="email" name="email" value={email}/> <br/><br/>
             <span>{errs.email? errs.email[0]:''}</span>

@@ -28,12 +28,13 @@ const ShowMedicine=()=>{
     const handleQuantity=(event)=>{
         // debugger;
         event.preventDefault();
-        const data={med_id:med_id,quantity:quantity};
+        const data={med_id:med_id,quantity:parseInt(quantity)};
+        debugger;
         axiosConfig.post("customer/add/cart",data).
         then((succ)=>{
             setSucc(succ.data);
             debugger;
-            window.location.href="customer/medlist";
+            window.location.href="/customer/medlist";
         },(err)=>{
             setErrs(err.response.data);
             console.log(data);
@@ -69,10 +70,8 @@ const ShowMedicine=()=>{
                     <td>
                         {
                             <form onSubmit={handleQuantity}>
-                                <input type="number" name="med_id" onChange={(e)=>{setMed_id(e.target.value)}} value={med_id}/>
-                                <input type="number" name="quantity" min={0} onChange={(e)=>{setQuantity(e.target.value)}} placeholder="Type quantity here" value={quantity[m.med_id]}/>
-                                <input type="submit" name="cart" value="ADD TO CART"/>
-
+                                <input type="number" name="quantity" min={0} onChange={(e)=>{setQuantity(e.target.value);setMed_id(m.med_id)}} placeholder="Type quantity here" value={quantity[m.med_id]}/>
+                                <input type="submit" name="cart" value="ADD TO CART"/> 
                             </form>
 
                         }
