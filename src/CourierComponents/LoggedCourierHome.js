@@ -8,7 +8,7 @@ const LoggedCourierHome=()=>{
     useEffect(()=>{
         axiosConfig.get("courier/orders").then((rsp)=>{
         setUser(rsp.data);
-        //debugger;
+        debugger;
         },(err)=>{})
     },[]);
     return(
