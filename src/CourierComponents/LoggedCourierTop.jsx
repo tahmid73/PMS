@@ -17,9 +17,12 @@ const LoggedCourierTop=()=>{
     return(
         <div>
             <ul>
+                <div>
                 <li><TopBar url="/courier/home" value="Home "/></li>
+                <li><TopBar url="/courier/AcceptedOrders" value="Accepted Orders"/></li>
+                <li><TopBar url="/courier/ViewOrders" value="Orders"/></li>
+                </div>
                 <li><button onClick={logout} value={"LOGOUT"} className="button button1 ">LOGOUT</button></li>
-                <Logout/>
             </ul>
         </div>
     )
