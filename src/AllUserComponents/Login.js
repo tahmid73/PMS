@@ -16,7 +16,7 @@ function Login(){
         then((succ)=>{
             var token=succ.data.token;
             localStorage.setItem("_authToken",token);
-            // debugger;
+            debugger;
             axiosConfig.get(`user/get/${email}`,data)
             .then((rsp)=>{
                 //debugger;
@@ -30,15 +30,17 @@ function Login(){
                     window.location.href="/manager/home";
                 }
             },(error)=>{
-                debugger;
                 setErrs(error.response.data);
+                console.log(error);
+
+                debugger;
             }
             )
-        },(err)=>{
-            console.log("error");
+        },(erros)=>{
+            setErrs(erros.response.data);
+            console.log(errs);
             debugger;
-        }
-        )
+        })
         
     }
     return(
@@ -50,14 +52,16 @@ function Login(){
                 <br/>
                 <center>
                 <form onSubmit={handleLogin}>
-                    Email: <input onChange={(e)=>{setEmail(e.target.value)}} size={30} type="email" name="email" value={email}/> <br/><br/>
-                    <span>{errs.email? errs.email[0]:''}</span>
-                    Password: <input onChange={(e)=>{setPassword(e.target.value)}} type="password" name="password" value={password}/> <br/><br/>
-                    <span>{errs? errs.password[0]:''}</span>
+                    Email: <input onChange={(e)=>{setEmail(e.target.value)}} size={30} type="email" name="email" value={email}/> <br/>
+                    <span>{errs.u_email? errs.u_email[0]:''}</span><br/>
+                    Password: <input onChange={(e)=>{setPassword(e.target.value)}} type="password" name="password" value={password}/> <br/>
+                    <span>{errs.u_pass? errs.u_pass[0]:''}</span><br/>
                     <input type="submit" value="Login"/>
                 </form>
                 </center>           
             </fieldset>
+            {errs.msg}
+
         </center>
         
         </div>
