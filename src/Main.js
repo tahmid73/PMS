@@ -19,6 +19,7 @@ import ManagerHome from "./ManagerComponents/ManagerHome";
 import ShowOrders from "./ManagerComponents/ShowOrders";
 import ShowSupply from "./ManagerComponents/ShowSupply";
 import ShowCart from "./ManagerComponents/ShowCart";
+import ViewCart from "./ManagerComponents/ViewCart";
 
 const Main=()=>{
     return(
@@ -48,6 +49,7 @@ const Main=()=>{
             <Route path="/manager/orders" element={<ShowOrders/>}/>
             <Route path="/manager/supply" element={<ShowSupply/>}/>
             <Route path="/manager/cart" element={<ShowCart/>}/>
+            <Route path="/manager/cart/table" element={<ViewCart/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>

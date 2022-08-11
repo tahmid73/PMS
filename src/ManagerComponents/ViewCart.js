@@ -2,11 +2,11 @@ import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
 
-const ShowSupply=()=>{
+function ViewCart(){
     const [val,getVal]=useState([])
 
     useEffect(()=>{
-        axiosConfig.get("manager/supply")
+        axiosConfig.get("manager/cart/table")
         .then((res) =>{
             debugger
             getVal(res.data)
@@ -17,38 +17,55 @@ const ShowSupply=()=>{
         })
 
     },[])
+
+    const placeOrder=(event)=>{
+        debugger
+        event.preventdefault();
+        axiosConfig.post("manager/confirm")
+        .then((suc)=>{
+            debugger
+            window.location.href="/manager/home"
+        },
+        (er)=>{
+            debugger
+            console.log(er)
+        })
+    }
     return(
         <div>
             <ManagerHome/>
-            <h3>Supply List</h3>
+            <h3>Cart List</h3>
             <table border="1">
+                <tbody>
                 <tr>
                     <th>Vendor Id</th>
                     <th>Medicine Id</th>
                     <th>Medicine Name</th>
-                    <th>Stock</th>
-                    <th>Price per Unit</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
                 </tr>
                     {
                         val.map((v) =>
-                            <tr key={v.supply_id}>
+                            <tr key={v.med_id}>
                                 <td>{v.vendor_id}</td>
                                 <td>{v.med_id}</td>
                                 <td>{v.med_name}</td>
-                                {
-                                    v.stock==0 &&
-                                    <td>Out of Stock</td>
-                                }
-                                {
-                                    v.stock!=0 &&
-                                    <td>{v.stock}</td>
-                                }
                                 <td>{v.price_perUnit}</td>
+                                <td>{v.quantity}</td>
+                                <td>{v.total_price}</td>
                             </tr>
                         )
                     }
+                </tbody>
             </table>
+            {
+                <form onSubmit={placeOrder}>
+                <br/><br/>
+                <input type="submit" name="confirm" value="Confirm Order"/> 
+                </form>
+            }
         </div>
     )
 }
-export default ShowSupply;
+export default ViewCart;

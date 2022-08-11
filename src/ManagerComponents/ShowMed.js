@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
+import ManagerHome from "./../ManagerComponents/ManagerHome"
 
 const ShowMed=()=>{
     const [val,getVal]=useState([])
@@ -34,6 +35,7 @@ const ShowMed=()=>{
         )}
     return(
         <div>
+            <ManagerHome/>
             <h3>Medicine List</h3>
             <table border="1">
                 <tr>

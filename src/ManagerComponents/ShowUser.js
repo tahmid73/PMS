@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
+import ManagerHome from "./../ManagerComponents/ManagerHome"
 
 function ShowUser(){
     const [val,getVal]=useState([])
@@ -18,6 +19,7 @@ function ShowUser(){
     },[])
     return(
         <div>
+            <ManagerHome/>
             <h3>User List</h3>
             <table border="1">
                 <tr>

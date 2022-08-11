@@ -1,5 +1,7 @@
+import axios from 'axios'
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
+import ManagerHome from "./../ManagerComponents/ManagerHome"
 
 const ShowCart=()=>{
     const [val,getVal]=useState([])
@@ -38,8 +40,13 @@ const ShowCart=()=>{
 
         )
     }
+    const viewPage=(event)=>{
+        event.preventDefault();
+        window.location.href="/manager/cart/table"
+    }
     return(
         <div>
+            <ManagerHome/>
             <h3>Item List</h3>
             <table border="1">
                 <tbody>
@@ -96,6 +103,10 @@ const ShowCart=()=>{
                     }
                     </tbody>
             </table>
+            <form onSubmit={viewPage}>
+                <br/><br/>
+                <input type="submit" name="confirm" value="Show Cart"/>
+            </form>
         </div>
     )
 }

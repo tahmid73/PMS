@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
+import ManagerHome from "./../ManagerComponents/ManagerHome"
 
 const ShowOrders=()=>{
     const [val,getVal]=useState([])
@@ -18,6 +19,7 @@ const ShowOrders=()=>{
     },[])
     return(
         <div>
+            <ManagerHome/>
             <h3>Order List</h3>
             <table border="1">
                 <tr>
