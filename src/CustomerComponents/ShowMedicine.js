@@ -41,6 +41,8 @@ const ShowMedicine=()=>{
     return(
         <div>
             <h3><CustomerTopBar/></h3>
+            <h3>MEDICINE LIST</h3>
+            <span>{errs.quantity? errs.quantity[0]:''}</span><br/>
             <table border="1">
                 <tr>
                     <th>Medicine Name</th>

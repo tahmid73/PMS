@@ -45,6 +45,7 @@ const CustomerOrders = () => {
     return (
         <div>
             <h3><CustomerTopBar/></h3>
+            <h3>ORDERS</h3>
             <span><br/><br/>{
             errs.msg
             ?   <h3>{errs.msg}</h3>
