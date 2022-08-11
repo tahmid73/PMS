@@ -1,36 +1,37 @@
+import axios from 'axios'
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
 
 function ViewCart(){
-    const [val,getVal]=useState([])
+    const [val,getVal]=useState([]);
 
     useEffect(()=>{
         axiosConfig.get("manager/cart/table")
         .then((res) =>{
-            debugger
-            getVal(res.data)
+            // debugger
+            getVal(res.data);
         },
         (err) =>{
-            debugger
-            console.log(err)
+            debugger;
+            console.log(err);
         })
 
     },[])
 
     const placeOrder=(event)=>{
-        debugger
-        event.preventdefault();
-        axiosConfig.post("manager/confirm")
-        .then((suc)=>{
-            debugger
-            window.location.href="/manager/home"
-        },
-        (er)=>{
-            debugger
-            console.log(er)
+        debugger;
+        axiosConfig.post("manager/confirm").then
+        ((rsp)=>{
+            debugger;
+            window.location.href="/manager/home";
+        },(err)=>{
+
         })
+        
     }
+
+    
     return(
         <div>
             <ManagerHome/>
@@ -59,12 +60,10 @@ function ViewCart(){
                     }
                 </tbody>
             </table>
-            {
-                <form onSubmit={placeOrder}>
+            <div>
                 <br/><br/>
-                <input type="submit" name="confirm" value="Confirm Order"/> 
-                </form>
-            }
+                <button onClick={placeOrder}> Confirm Order</button>
+            </div>   
         </div>
     )
 }

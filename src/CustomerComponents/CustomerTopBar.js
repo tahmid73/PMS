@@ -4,6 +4,7 @@ const CustomerTopBar=()=>{
     return(
         <div>
             <CustomerTop url="/customer/home" value="Home || "/>
+            <CustomerTop url="/customer/profile" value="Profile || "/>
             <CustomerTop url="/customer/medlist" value="Medicine List || "/>
             <CustomerTop url="/customer/cart" value="Cart || "/>
             <CustomerTop url="/customer/orders" value="Orders || "/>

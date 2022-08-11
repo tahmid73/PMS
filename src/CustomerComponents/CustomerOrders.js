@@ -33,6 +33,7 @@ const CustomerOrders = () => {
         })
     }
     const cancel=(event)=>{ 
+        debugger
         event.preventDefault();
         axiosConfig.get(`customer/order/cancel/${order_id}`).then
         ((response)=>{

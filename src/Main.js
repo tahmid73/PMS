@@ -22,6 +22,8 @@ import ShowSupply from "./ManagerComponents/ShowSupply";
 import ShowCart from "./ManagerComponents/ShowCart";
 import ViewCart from "./ManagerComponents/ViewCart";
 import AcceptedOrders from "./CourierComponents/AcceptedOrders";
+import CustomerProfile from "./CustomerComponents/CustomerProfile";
+import CustomerProfileUpdate from "./CustomerComponents/CustomerProfileUpdate";
 
 const Main=()=>{
     return(
@@ -39,6 +41,8 @@ const Main=()=>{
 
             {/* CUSTOMER ---> AYESHA */}
             <Route path="/customer/home" element={<CustomerHome/>}/>
+            <Route path="/customer/profile" element={<CustomerProfile/>}/>
+            <Route path="/customer/profile/update" element={<CustomerProfileUpdate/>}/>
             <Route path="/customer/medlist" element={<ShowMedicine/>}/>
             <Route path="/customer/cart" element={<CustomerCart/>}/>
             <Route path="/customer/cart/grandtotal" element={<CustomerGrandtotal/>}/>
