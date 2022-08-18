@@ -16,6 +16,8 @@ const CustomerProfile=()=>{
     },[])
     return(
         <div>
+            <Logout/>
+            <br/>
             <h3><CustomerTopBar/></h3>
                 <div>
                     <center>
@@ -37,7 +39,6 @@ const CustomerProfile=()=>{
                     </center>    
                 </div>
                 <br/>
-            <Logout/>
         </div>
     )
 }

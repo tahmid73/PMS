@@ -40,6 +40,8 @@ const ShowMedicine=()=>{
     }
     return(
         <div>
+            <Logout/>
+            <br/>
             <h3><CustomerTopBar/></h3>
             <h3>MEDICINE LIST</h3>
             <span>{errs.quantity? errs.quantity[0]:''}</span><br/>
@@ -80,7 +82,6 @@ const ShowMedicine=()=>{
                     
             </table>
             <br/>
-            <Logout/>
         </div>
     )
 }

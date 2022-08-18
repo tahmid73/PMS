@@ -8,7 +8,8 @@ const CustomerTopBar=()=>{
             <CustomerTop url="/customer/medlist" value="Medicine List || "/>
             <CustomerTop url="/customer/cart" value="Cart || "/>
             <CustomerTop url="/customer/orders" value="Orders || "/>
-            <CustomerTop url="/customer/return" value="Return"/>
+            <CustomerTop url="/customer/return" value="Return ||"/>
+            {/* <CustomerTop url="/customer/profile/update" value="update" /> */}
         </div>
     )
 }

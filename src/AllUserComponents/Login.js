@@ -61,9 +61,9 @@ function Login(){
                 </center>           
             </fieldset>
             {errs.msg}
-
+            <br/><br/>
+        <a href="/forgotpassword">FORGOT PASSWORD ?</a>
         </center>
-        
         </div>
     )
 }

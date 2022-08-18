@@ -4,6 +4,8 @@ import CustomerTopBar from "./CustomerTopBar";
 const CustomerOrderPlaced=()=>{
     return(
         <div>
+            <Logout/>
+            <br/>
             <h3><CustomerTopBar/></h3>
             <center>
                 <br/>
@@ -15,7 +17,6 @@ const CustomerOrderPlaced=()=>{
             <a href="/customer/home">RETURN HOME</a>
             </center>
             <br/>
-            <Logout/>
         </div>
     )
 }

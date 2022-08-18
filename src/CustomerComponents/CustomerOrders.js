@@ -45,6 +45,8 @@ const CustomerOrders = () => {
     }
     return (
         <div>
+            <Logout/>
+            <br/>
             <h3><CustomerTopBar/></h3>
             <h3>ORDERS</h3>
             <span><br/><br/>{
@@ -115,7 +117,6 @@ const CustomerOrders = () => {
             }  
             </div>
             <br/><br/>
-            <Logout/>
         </div>
     )
 }
