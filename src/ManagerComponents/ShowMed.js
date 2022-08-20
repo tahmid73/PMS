@@ -5,6 +5,8 @@ import ManagerHome from "./../ManagerComponents/ManagerHome"
 const ShowMed=()=>{
     const [val,getVal]=useState([])
     const [medId,setId]=useState('')
+    const [flg,setFlag]=useState("false")
+    const [detail,setDet]=useState([])
 
     useEffect(()=>{
         axiosConfig.get("manager/medicine")
@@ -33,6 +35,21 @@ const ShowMed=()=>{
                 console.log(err);
             }
         )}
+
+    const details=(event)=>{
+        event.preventDefault();
+        const data={m_id:medId}
+        debugger
+        axiosConfig.post("manager/med/detail",data)
+        .then((suc)=>{
+            debugger
+            setDet(suc.data)
+           // window.location.href="/manager/medicine"
+        },(er)=>{
+            debugger
+            console.log(er)
+        })
+    }
     return(
         <div>
             <ManagerHome/>
@@ -62,16 +79,46 @@ const ShowMed=()=>{
                                 <td>{v.expiryDate}</td>
                                 <td>
                                     {
-                                    <form onSubmit={deleteMed}>
-                                        <input type="submit" onClick={(e)=>{setId(v.med_id)}} name="delete" value="DELETE"/>
+                                    <form onSubmit={details}>
+                                        <input type="submit" onClick={(e)=>{setId(v.med_id);setFlag("true")}} name="details" value="Details"/>
                                     </form>
                                     }
                                 </td>
+                                <td>
+                                    {
+                                    <form onSubmit={deleteMed}>
+                                        <input type="submit" onClick={(e)=>{setId(v.med_id)}} name="delete" value="Delete"/>
+                                    </form>
+                                    }
+                                </td>
+                                
                             </tr>
                         )
                     }
             </table>
+            <br/><br/>
+            <div>
+            {
+                flg
+                ?   <div>
+                        <fieldset style={{width:"15%"}}>
+                        <b><center><u>Medicine Details</u></center></b>
+                            <b>Medicine ID : {medId} </b><br/>
+                            <b>Medicine Name : {detail.med_name} </b><br/>
+                            <b>Unit Price : {detail.price_perUnit} </b><br/>
+                            <b>Stock : {detail.Stock} </b><br/>
+                            <b>Manufacturing Date : {detail.manufacturingDate} </b><br/>
+                            <b>Expiry Date : {detail.expiryDate} </b><br/>
+                            <b>Vendor ID : {detail.vendor_id} </b><br/>
+                            <b>Vendor Name : {detail.vendor_name} </b><br/>
+                            <b>Contract ID : {detail.contract_id} </b><br/>
+                        </fieldset>
+                    </div>
+                : ""
+            }  
+            </div>
         </div>
+        
     )
 }
 export default ShowMed;

@@ -24,6 +24,10 @@ import ViewCart from "./ManagerComponents/ViewCart";
 import AcceptedOrders from "./CourierComponents/AcceptedOrders";
 import CustomerProfile from "./CustomerComponents/CustomerProfile";
 import CustomerProfileUpdate from "./CustomerComponents/CustomerProfileUpdate";
+import ShowContract from "./ManagerComponents/ShowContract";
+import ShowQuery from "./ManagerComponents/ShowQuery";
+import ShowAccount from "./ManagerComponents/ShowAccount";
+import SearchBar from "./ManagerComponents/SearchBar";
 
 const Main=()=>{
     return(
@@ -58,6 +62,10 @@ const Main=()=>{
             <Route path="/manager/supply" element={<ShowSupply/>}/>
             <Route path="/manager/cart" element={<ShowCart/>}/>
             <Route path="/manager/cart/table" element={<ViewCart/>}/>
+            <Route path="/manager/contract" element={<ShowContract/>}/>
+            <Route path="/manager/query" element={<ShowQuery/>}/>
+            <Route path="/manager/account" element={<ShowAccount/>}/>
+            <Route path="/manager/searching" element={<SearchBar/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>
