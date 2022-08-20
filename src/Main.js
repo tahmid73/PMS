@@ -2,12 +2,9 @@ import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from "./AllUserComponents/Login";
 import Registration from "./AllUserComponents/Registration";
 import Home from "./AllUserComponents/Home";
-import Top from "./AllUserComponents/Top";
-import LoggedCourierTop from "./CourierComponents/LoggedCourierHome";
 import LoggedCourierHome from "./CourierComponents/LoggedCourierHome";
 import ViewOrders from "./CourierComponents/ViewOrders";
 import CustomerHome from "./CustomerComponents/CustomerHome";
-import Logout from "./AllUserComponents/Logout";
 import ShowMedicine from "./CustomerComponents/ShowMedicine";
 import CustomerCart from "./CustomerComponents/CustomerCart";
 import ShowMed from "./ManagerComponents/ShowMed";
@@ -27,6 +24,8 @@ import CustomerProfileUpdate from "./CustomerComponents/CustomerProfileUpdate";
 import ForgetPassword from "./AllUserComponents/ForgetPassword";
 import VerifyOTP from "./AllUserComponents/VerifyOTP";
 import SetPassword from "./AllUserComponents/SetPassword";
+import SetCustomerPassword from "./CustomerComponents/SetCustomerPassword";
+import CustomerComplain from "./CustomerComponents/CustomerComplain";
 
 const Main=()=>{
     return(
@@ -49,12 +48,14 @@ const Main=()=>{
             <Route path="/customer/home" element={<CustomerHome/>}/>
             <Route path="/customer/profile" element={<CustomerProfile/>}/>
             <Route path="/customer/profile/update" element={<CustomerProfileUpdate/>}/>
+            <Route path="/set/password/customer/:email" element={<SetCustomerPassword/>}/>
             <Route path="/customer/medlist" element={<ShowMedicine/>}/>
             <Route path="/customer/cart" element={<CustomerCart/>}/>
             <Route path="/customer/cart/grandtotal" element={<CustomerGrandtotal/>}/>
             <Route path="/customer/orderplaced" element={<CustomerOrderPlaced/>}/>
             <Route path="/customer/orders" element={<CustomerOrders/>}/>
             <Route path="/customer/return" element={<CustomerReturn/>}/>
+            <Route path="/customer/complain" element={<CustomerComplain/>}/>
 
             {/* MANAGER ---> MANAGER */}
             <Route path="/manager/medicine" element={<ShowMed/>}/>

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Logout from "../AllUserComponents/Logout"
 import axiosConfig from "./../AllUserComponents/axiosConfig"
@@ -9,7 +8,7 @@ const CustomerProfileUpdate=()=>{
     const [name,setName] =useState("");
     const [errs,setErrs] = useState({});
     const [flag,setFlag] = useState(false);
-    const [profilepic,setProfilePic] =useState();
+    const [profilepic,setProfilePic] =useState("");
     useEffect(()=>{
         axiosConfig.post("customer/account").then
         ((rsp)=>{
