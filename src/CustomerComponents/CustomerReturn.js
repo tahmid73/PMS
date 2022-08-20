@@ -38,6 +38,8 @@ const CustomerReturn = () => {
     }
     return(
         <div>
+            <Logout/>
+            <br/>
             <h3><CustomerTopBar/></h3>
             <span><br/><br/>{
             errs.msg
@@ -52,27 +54,36 @@ const CustomerReturn = () => {
                                     <fieldset style={{width:"20%"}}>
                                         ORDER ID : {item.order_id} <br/>
                                         <fieldset>
-                                            ITEM : {item.items}{" "}
-                                            {
-                                                item.return_status=='true'
-                                                ? "#PROCESSING"
-                                                : " "
-                                            }
-                                            {
-                                                item.return_status=='accepted'
-                                                ? "#ACCEPTED"
-                                                : " "
-                                            }
-                                            {
-                                                item.return_status=='false'
-                                                ? <div>
-                                                    <form onSubmit={ret}>
-                                                        <input type="submit" onClick={(e)=>{setId(item.id)}} value="RETURN"></input>
-                                                    </form>
-                                                </div>
-                                                    
-                                                : " "
-                                            }
+                                            <table>
+                                                <tr>
+                                                    <td>ITEMS: </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{item.items}</td>
+                                                    <td>
+                                                    {
+                                                        item.return_status=='true'
+                                                        ? "#PROCESSING"
+                                                        : " "
+                                                    }
+                                                    {
+                                                        item.return_status=='accepted'
+                                                        ? "#ACCEPTED"
+                                                        : " "
+                                                    }
+                                                    {
+                                                        item.return_status=='false'
+                                                        ? <div>
+                                                            <form onSubmit={ret}>
+                                                                <input type="submit" onClick={(e)=>{setId(item.id)}} value="RETURN"></input>
+                                                            </form>
+                                                        </div>
+                                                            
+                                                        : " "
+                                                    }
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </fieldset>
                                     </fieldset>
                                     <br/>
@@ -86,7 +97,6 @@ const CustomerReturn = () => {
             }</span>
             <br/><br/>
 
-            <Logout/>
         </div>
     )
 }

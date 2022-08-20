@@ -28,6 +28,9 @@ import ShowContract from "./ManagerComponents/ShowContract";
 import ShowQuery from "./ManagerComponents/ShowQuery";
 import ShowAccount from "./ManagerComponents/ShowAccount";
 import SearchBar from "./ManagerComponents/SearchBar";
+import ForgetPassword from "./AllUserComponents/ForgetPassword";
+import VerifyOTP from "./AllUserComponents/VerifyOTP";
+import SetPassword from "./AllUserComponents/SetPassword";
 
 const Main=()=>{
     return(
@@ -37,6 +40,9 @@ const Main=()=>{
             <Route path="/" element={<Login/>}/>
             <Route path="/Registration" element={<Registration/>}/>
             <Route path="/home" element={<Home/>}/>
+            <Route path="/forgotpassword" element={<ForgetPassword/>}/>
+            <Route path="/send/otp/:email" element={<VerifyOTP/>}/>
+            <Route path="/set/password/:email" element={<SetPassword/>}/>
             
             {/* COURIER--->TAHMID */}
             <Route path="/courier/home" element={<LoggedCourierHome/>}/>
