@@ -14,10 +14,11 @@ function Login(){
         // debugger;
         axiosConfig.post("login",data).
         then((succ)=>{
+            debugger
             var token=succ.data.token;
             localStorage.setItem("_authToken",token);
             debugger;
-            axiosConfig.get(`user/get/${email}`,data)
+            axiosConfig.get(`user/get/${email}`)
             .then((rsp)=>{
                 //debugger;
                 if(rsp.data.u_type==="COURIER"){

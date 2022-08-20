@@ -1,6 +1,5 @@
 import {useState,useEffect} from 'react';
 import axiosConfig from './../AllUserComponents/axiosConfig';
-import {Link} from 'react-router-dom';
 import CustomerTopBar from './CustomerTopBar';
 import Logout from '../AllUserComponents/Logout';
 const ShowMedicine=()=>{
@@ -9,7 +8,9 @@ const ShowMedicine=()=>{
     const[stock,setStock]=useState();
     const[quantity,setQuantity] = useState([]);
     const [errs,setErrs] = useState({});
-    const [succ,setSucc] = useState({});
+    const [succ,setSucc] = useState({});    
+    const [search,setSearch]=useState("");
+    const [filter,setfilter]=useState("Filter by");
     useEffect(()=>{
         axiosConfig.get("customer/medlist").then((rsp)=>{
         setMed(rsp.data);
@@ -18,7 +19,19 @@ const ShowMedicine=()=>{
 
         })
 
-    },[quantity]);
+    },[]);
+
+    const searchmed=(event)=>{
+        event.preventDefault();
+        const data = {search:search,filter:filter}
+    axiosConfig.post("customer/search",data).then
+    ((rsp)=>{
+        setMed(rsp.data);
+        debugger
+    },(err)=>{
+        debugger
+    })
+    }
 
     const handleQuantity=(event)=>{
         // debugger;
@@ -44,6 +57,20 @@ const ShowMedicine=()=>{
             <br/>
             <h3><CustomerTopBar/></h3>
             <h3>MEDICINE LIST</h3>
+            <fieldset>
+                <form onSubmit={searchmed}>
+                    Search by Name: <input type="text" onChange={(e)=>{setSearch(e.target.value)}} name="search" value={search}/> 
+                    <input type="submit" name="add" value="SEARCH"/> &nbsp; &nbsp; 
+
+                    <select name="filter" id="" onChange={(e)=>{setfilter(e.target.value)}} value={filter}>
+                        <option value="">Filter</option>
+                        <optgroup label="Price :">
+                            <option value="ORDER BY PRICE HIGHEST TO LOWEST">High - Low</option>
+                            <option value="ORDER BY PRICE LOWEST TO HIGHEST">Low - High</option>
+                        </optgroup>
+                    </select>
+                </form>
+            </fieldset>
             <span>{errs.quantity? errs.quantity[0]:''}</span><br/>
             <table border="1">
                 <tr>

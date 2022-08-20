@@ -20,6 +20,8 @@ const CustomerProfile=()=>{
             <br/>
             <h3><CustomerTopBar/></h3>
                 <div>
+                    <button onClick={(e)=>{window.location.href=`/set/password/customer/${user.customer_email}`;}}>CHANGE PASSWORD</button>
+
                     <center>
                         <div>
                         <fieldset style={{width:"50%"}}>
