@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-import axiosConfig from "./../AllUserComponents/axiosConfig"
+import ShowMedicine from "./ShowMedicine";
 
 const CustomerHome=()=>{
-    const[user,setUser]=useState([]);
-    useEffect(()=>{
-        axiosConfig.get("alluser/get").then((rsp)=>{
-        setUser(rsp.data);
-        debugger;
-        },(err)=>{})
-    },[]);
     return(
         <div>
-            <h3>henlo</h3>
+            <ShowMedicine/>
         </div>
     )
 }

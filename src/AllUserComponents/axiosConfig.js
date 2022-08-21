@@ -7,16 +7,21 @@ const instance = axios.create({
 instance.interceptors.request.use((config)=>{
     config.headers.common["Authorization"]=localStorage.getItem("_authToken");
     console.log("authorized");
+    debugger;
     return config;
-},(err)=>{});
+},(err)=>{
+    debugger;
+});
 
 instance.interceptors.response.use((rsp)=>{
+    debugger
     return rsp;
 },(err)=>{
     if(err.response.status==401){
         debugger;
         window.location.href="/";
     }
+    debugger
     return Promise.reject(err);
 });
 export default instance;
