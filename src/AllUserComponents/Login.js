@@ -1,11 +1,10 @@
-import axios from "axios";
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Navigate } from "react-router-dom";
+import axiosConfig from  './axiosConfig';
 function Login(){
     //const history = useHistory();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    const [url,setUrl] = useState("");
     const [errs,setErrs] = useState("");
     const [user,setUser] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -13,52 +12,43 @@ function Login(){
     const handleLogin=(event)=>{
         event.preventDefault();
         const data={u_email:email,u_pass:password};
-        setUrl(`http://localhost:8000/api/user/get/${email}`);
-        axios.get(url,data)
-        .then((rsp)=>{
-            //debugger;
-            if(rsp.data.u_pass===password){
-                console.log("logged");
-                setIsSubmitted(true);
+        // debugger;
+        axiosConfig.post("login",data).
+        then((succ)=>{
+            var token=succ.data.token;
+            localStorage.setItem("_authToken",token);
+            // debugger;
+            axiosConfig.get(`user/get/${email}`,data)
+            .then((rsp)=>{
+                debugger;
                 if(rsp.data.u_type==="COURIER"){
-                    setHomeUrl("/courier/home")
+                    // setHomeUrl("/courier/home")
+                    window.location.href="/courier/home";
                 }
-                else if(rsp.data.u_type==="MANAGER"){
-                    setHomeUrl("/home")
+                else if (rsp.data.u_type=="CUSTOMER"){
+                    window.location.href="/customer/home";
                 }
-                else if(rsp.data.u_type==="COURIER"){
-                    setHomeUrl("/courier/home")
-                }
+            },(error)=>{
+                debugger;
+                setErrs(error.response.data);
             }
-            else{
-                console.log("wrong password");
-                setErrs("wrong password");
-                //debugger;
-            }
-        }
-        ,(err)=>{
-            //debugger;
-            setErrs(err.response.data);
+            )
+        },(err)=>{
+            console.log("error");
+            debugger;
         }
         )
+        
     }
-
-    const loginForm = (
+    return(
         <div>
         <form onSubmit={handleLogin}>
             Email: <input onChange={(e)=>{setEmail(e.target.value)}} type="email" name="email" value={email}/> <br/><br/>
             <span>{errs.email? errs.email[0]:''}</span>
             Password: <input onChange={(e)=>{setPassword(e.target.value)}} type="password" name="password" value={password}/> <br/><br/>
-            <span>{errs? errs:''}</span>
+            <span>{errs? errs.password[0]:''}</span>
             <input type="submit" value="Login"/>
         </form>
-        </div>  
-    )
-    return(
-        <div>
-        <fieldset>
-        {isSubmitted ? <Navigate to={homeUrl}/> : loginForm}            
-        </fieldset>
         </div>
     )
 }
