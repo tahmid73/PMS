@@ -30,6 +30,7 @@ import VerifyOTP from "./AllUserComponents/VerifyOTP";
 import SetPassword from "./AllUserComponents/SetPassword";
 import SetCustomerPassword from "./CustomerComponents/SetCustomerPassword";
 import CustomerComplain from "./CustomerComponents/CustomerComplain";
+import CustomerChart from "./CustomerComponents/CustomerChart";
 
 const Main=()=>{
     return(
@@ -60,6 +61,7 @@ const Main=()=>{
             <Route path="/customer/orders" element={<CustomerOrders/>}/>
             <Route path="/customer/return" element={<CustomerReturn/>}/>
             <Route path="/customer/complain" element={<CustomerComplain/>}/>
+            <Route path="/customer/chart" element={<CustomerChart/>}/>
 
             {/* MANAGER ---> MANAGER */}
             <Route path="/manager/medicine" element={<ShowMed/>}/>

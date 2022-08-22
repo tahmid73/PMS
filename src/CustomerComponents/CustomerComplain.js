@@ -3,7 +3,8 @@ import axiosConfig from './../AllUserComponents/axiosConfig';
 import CustomerTopBar from './CustomerTopBar';
 import Logout from '../AllUserComponents/Logout';
 const CustomerComplain=()=>{
-    const[msg,setMsg] = useState([]);
+    const[msg,setMsg] = useState("");
+    const[msgs,setMsgs] = useState("");
     const [user,setUser] =useState([]);
     useEffect(()=>{
         axiosConfig.post("customer/account").then
@@ -15,11 +16,13 @@ const CustomerComplain=()=>{
         })
     },[])
     
-    const sendComplain=()=>{
-        const data={msg:msg}
+    const sendComplain=(event)=>{
+        event.preventDefault();
+        const data={msg:msg,customer_id:user.customer_id}
         axiosConfig.post("customer/complain",data).then
         ((rsp)=>{
             debugger;
+            setMsgs(rsp.data)
         },(err)=>{
             debugger;
         })
@@ -44,6 +47,7 @@ const CustomerComplain=()=>{
                 </form>
             </fieldset>
             <br/>
+            {msgs.msg}
             </center>
         </div>
     )

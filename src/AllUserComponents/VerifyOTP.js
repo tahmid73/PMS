@@ -1,10 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect, useRef} from "react";
 import axiosConfig from "./axiosConfig";
 import { useParams } from "react-router-dom";
 const VerifyOTP=()=>{
     const {email} = useParams();
+    const [count,setCount] = useState(60);
+    const counterRef = useRef(60);
     const [otp,setOtp] = useState();
     const [errs,setErrs] = useState("");
+
+    useEffect(() => {
+        counterRef.current = count;
+      })
+    
+      useEffect(() => {
+        const info = {email:email}
+
+        setInterval(() => {
+          setCount(counterRef.current - 1);
+          if (counterRef.current==0)
+          {
+            alert("The OTP has expired. Request for a new OTP.")
+            axiosConfig.post("otp/clear",info).then
+            ((rsp)=>{
+                    window.location.href="/forgotpassword";
+            },(err)=>{
+                debugger;
+            })
+          }
+        }, 1000);
+      }, []);
+    
 
     const verify=(event)=>
     {
@@ -33,6 +58,7 @@ const VerifyOTP=()=>{
                 <input type="submit" value="VERIFY OTP"/>
             </form>                 
             </fieldset>
+            THE OTP WILL EXPIRE IN {count} SECONDS
             {errs.msg}
             </center>
         </div>
