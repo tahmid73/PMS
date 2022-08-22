@@ -17,7 +17,7 @@ const ManagerHome=()=>{
             <fieldset style={{width:"50%"}}>
                 <center>
                     <button onClick={(e=>{window.location.href="/manager/user";})}>View User</button>
-                    <button onClick={(e=>{window.location.href="/manager/medicine";})}>View Medicine</button>
+                    <button onClick={(e=>{window.location.href="/manager/medicine/all";})}>View Medicine</button>
                     <button onClick={(e=>{window.location.href="/manager/orders";})}>View Orders</button>
                     <button onClick={(e=>{window.location.href="/manager/contract";})}>View Contract</button>
                     <button onClick={(e=>{window.location.href="/manager/supply";})}>View Supply</button>

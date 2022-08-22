@@ -64,7 +64,7 @@ const Main=()=>{
             <Route path="/customer/chart" element={<CustomerChart/>}/>
 
             {/* MANAGER ---> MANAGER */}
-            <Route path="/manager/medicine" element={<ShowMed/>}/>
+            <Route path="/manager/medicine/:id" element={<ShowMed/>}/>
             <Route path="/manager/user" element={<ShowUser/>}/>
             <Route path="/manager/home" element={<ManagerHome/>}/>
             <Route path="/manager/orders" element={<ShowOrders/>}/>
