@@ -5,7 +5,7 @@ import ManagerHome from "./../ManagerComponents/ManagerHome"
 const ShowContract=()=>{
     const [val,getVal]=useState([])
     const [cont_Id,setId]=useState('')
-    const [flg,setFlag]=useState("false")
+    const [flg,setFlag]=useState(false)
     const [detail,setDet]=useState([])
 
     useEffect(()=>{
@@ -40,7 +40,7 @@ const ShowContract=()=>{
         event.preventDefault();
         const data={c_id:cont_Id}
         debugger
-        axiosConfig.post("manager/contract/detail",data)
+        axiosConfig.post(`manager/contract/detail/${cont_Id}`,data)
         .then((suc)=>{
             debugger
             setDet(suc.data)
@@ -72,7 +72,7 @@ const ShowContract=()=>{
                                 <td>
                                     {
                                     <form onSubmit={details}>
-                                        <input type="submit" onClick={(e)=>{setId(v.contract_id);setFlag("true")}} name="details" value="Details"/>
+                                        <input type="submit" onClick={(e)=>{setId(v.contract_id);setFlag(true)}} name="details" value="Details"/>
                                     </form>
                                     }
                                 </td>

@@ -5,7 +5,7 @@ import ManagerHome from "./../ManagerComponents/ManagerHome"
 const ShowMed=()=>{
     const [val,getVal]=useState([])
     const [medId,setId]=useState('')
-    const [flg,setFlag]=useState("false")
+    const [flg,setFlag]=useState(false)
     const [detail,setDet]=useState([])
 
     useEffect(()=>{
@@ -40,7 +40,7 @@ const ShowMed=()=>{
         event.preventDefault();
         const data={m_id:medId}
         debugger
-        axiosConfig.post("manager/med/detail",data)
+        axiosConfig.post(`manager/med/detail/${medId}`,data)
         .then((suc)=>{
             debugger
             setDet(suc.data)
@@ -80,7 +80,7 @@ const ShowMed=()=>{
                                 <td>
                                     {
                                     <form onSubmit={details}>
-                                        <input type="submit" onClick={(e)=>{setId(v.med_id);setFlag("true")}} name="details" value="Details"/>
+                                        <input type="submit" onClick={(e)=>{setId(v.med_id);setFlag(true)}} name="details" value="Details"/>
                                     </form>
                                     }
                                 </td>
