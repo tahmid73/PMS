@@ -19,9 +19,11 @@ const SearchBar=()=>{
     // },[])
     const search=(event)=>{
         event.preventDefault();
-        const data={id:val,tab:table}
-        {
-            table=="user" &&
+        const data={id:val}
+            if (table=="medicine")
+            {
+                
+            }
             axiosConfig.post("manager/search/user",data)
             .then((res)=>{
                 debugger
@@ -30,7 +32,6 @@ const SearchBar=()=>{
                 debugger
                 console.log(err)
             })
-        }
         
     }
     return(
