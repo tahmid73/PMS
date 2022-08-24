@@ -30,18 +30,15 @@ import VerifyOTP from "./AllUserComponents/VerifyOTP";
 import SetPassword from "./AllUserComponents/SetPassword";
 import SetCustomerPassword from "./CustomerComponents/SetCustomerPassword";
 import CustomerComplain from "./CustomerComponents/CustomerComplain";
-<<<<<<< HEAD
 import CourierProfile from "./CourierComponents/CourierProfile";
 import CourierProfileUpdate from "./CourierComponents/CourierProfileUpdate";
 import CourierCashOut from "./CourierComponents/CourierCashOut";
-=======
 import CustomerChart from "./CustomerComponents/CustomerChart";
 import PassChange from "./ManagerComponents/PassChange";
 import CustomerChartMonthly from "./CustomerComponents/CustomerChartMonthly";
 import CustomerChartYearly from "./CustomerComponents/CustomerChartYearly";
 import ProPic from "./ManagerComponents/ProPic";
 import Profile from "./ManagerComponents/Profile";
->>>>>>> 95d908be00c3763d476e70452a2a3316d8b781d7
 
 const Main=()=>{
     return(
