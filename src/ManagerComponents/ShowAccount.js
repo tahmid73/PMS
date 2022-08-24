@@ -1,9 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
+import Monthly from './Monthly'
+import Yearly from './Yearly'
 
 function ShowAccount(){
     const [val,getVal]=useState([])
+    const [cat,setCat]=useState([])
 
     useEffect(()=>{
         axiosConfig.get("manager/account")
@@ -39,6 +42,19 @@ function ShowAccount(){
                         )
                     }
             </table>
+            <select name="search" placeholder="Search in table" onChange={(e)=>{setCat(e.target.value)}}>
+                <option value="select">Select</option>
+                <option value="monthly">Monthly Record</option>
+                <option value="yearly">Yearly Record</option>
+            </select>
+            {
+                cat=="monthly" &&
+                <Monthly/>
+            }
+            {
+                cat=="yearly" &&
+                <Yearly/>
+            }
         </div>
     )
 }

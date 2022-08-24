@@ -30,9 +30,18 @@ import VerifyOTP from "./AllUserComponents/VerifyOTP";
 import SetPassword from "./AllUserComponents/SetPassword";
 import SetCustomerPassword from "./CustomerComponents/SetCustomerPassword";
 import CustomerComplain from "./CustomerComponents/CustomerComplain";
+<<<<<<< HEAD
 import CourierProfile from "./CourierComponents/CourierProfile";
 import CourierProfileUpdate from "./CourierComponents/CourierProfileUpdate";
 import CourierCashOut from "./CourierComponents/CourierCashOut";
+=======
+import CustomerChart from "./CustomerComponents/CustomerChart";
+import PassChange from "./ManagerComponents/PassChange";
+import CustomerChartMonthly from "./CustomerComponents/CustomerChartMonthly";
+import CustomerChartYearly from "./CustomerComponents/CustomerChartYearly";
+import ProPic from "./ManagerComponents/ProPic";
+import Profile from "./ManagerComponents/Profile";
+>>>>>>> 95d908be00c3763d476e70452a2a3316d8b781d7
 
 const Main=()=>{
     return(
@@ -66,19 +75,25 @@ const Main=()=>{
             <Route path="/customer/orders" element={<CustomerOrders/>}/>
             <Route path="/customer/return" element={<CustomerReturn/>}/>
             <Route path="/customer/complain" element={<CustomerComplain/>}/>
+            <Route path="/customer/chart" element={<CustomerChart/>}/>
+            <Route path="/customer/chart/monthly" element={<CustomerChartMonthly/>}/>
+            <Route path="/customer/chart/yearly" element={<CustomerChartYearly/>}/>
 
             {/* MANAGER ---> MANAGER */}
-            <Route path="/manager/medicine" element={<ShowMed/>}/>
-            <Route path="/manager/user" element={<ShowUser/>}/>
+            <Route path="/manager/medicine/:id" element={<ShowMed/>}/>
+            <Route path="/manager/user/:id" element={<ShowUser/>}/>
             <Route path="/manager/home" element={<ManagerHome/>}/>
-            <Route path="/manager/orders" element={<ShowOrders/>}/>
-            <Route path="/manager/supply" element={<ShowSupply/>}/>
+            <Route path="/manager/orders/:id" element={<ShowOrders/>}/>
+            <Route path="/manager/supply/:id" element={<ShowSupply/>}/>
             <Route path="/manager/cart" element={<ShowCart/>}/>
             <Route path="/manager/cart/table" element={<ViewCart/>}/>
-            <Route path="/manager/contract" element={<ShowContract/>}/>
+            <Route path="/manager/contract/:id" element={<ShowContract/>}/>
             <Route path="/manager/query" element={<ShowQuery/>}/>
             <Route path="/manager/account" element={<ShowAccount/>}/>
             <Route path="/manager/searching" element={<SearchBar/>}/>
+            <Route path="/manager/change" element={<PassChange/>}/>
+            <Route path="/manager/upload" element={<ProPic/>}/>
+            <Route path="/manager/profile" element={<Profile/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>

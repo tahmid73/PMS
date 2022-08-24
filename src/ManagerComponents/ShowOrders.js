@@ -1,23 +1,43 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
+import { useParams } from 'react-router-dom'
 
 const ShowOrders=()=>{
     const [val,getVal]=useState([])
     const [orderId,setId]=useState('')
-    const [flg,setFlag]=useState("false")
+    const [flg,setFlag]=useState(false)
     const [detail,setDet]=useState([])
+    const [error,setError]=useState('')
+    const {id} = useParams();
 
     useEffect(()=>{
-        axiosConfig.get("manager/orders")
-        .then((res) =>{
-            debugger
-            getVal(res.data)
-        },
-        (err) =>{
-            debugger
-            console.log(err)
-        })
+        if (id=="all")
+        {
+            axiosConfig.get("manager/orders")
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+            })
+        }
+        else
+        {
+            axiosConfig.post(`manager/orders/detail/${id}`)
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+                setError(err.response.data);
+
+            })
+        }
 
     },[])
 
@@ -25,10 +45,10 @@ const ShowOrders=()=>{
         event.preventDefault();
         const data={o_id:orderId}
         debugger
-        axiosConfig.post("manager/orders/detail",data)
+        axiosConfig.post(`manager/orders/detail/${orderId}`,data)
         .then((suc)=>{
             debugger
-            setDet(suc.data)
+            setDet(suc.data[0])
            // window.location.href="/manager/medicine"
         },(er)=>{
             debugger
@@ -39,6 +59,9 @@ const ShowOrders=()=>{
         <div>
             <ManagerHome/>
             <h3>Order List</h3>
+            {error.msg 
+            ? <h3>{error.msg}</h3>
+            : <div>
             <table border="1">
                 <tr>
                     <th>Order Id</th>
@@ -56,7 +79,7 @@ const ShowOrders=()=>{
                                 <td>
                                     {
                                     <form onSubmit={details}>
-                                        <input type="submit" onClick={(e)=>{setId(v.order_id);setFlag("true")}} name="details" value="Details"/>
+                                        <input type="submit" onClick={(e)=>{setId(v.order_id);setFlag(true)}} name="details" value="Details"/>
                                     </form>
                                     }
                                 </td>
@@ -64,6 +87,8 @@ const ShowOrders=()=>{
                         )
                     }
             </table>
+            </div>
+            }
             <div>
             {
                 flg

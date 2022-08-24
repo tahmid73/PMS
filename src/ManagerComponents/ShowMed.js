@@ -1,23 +1,44 @@
 import React,{useState,useEffect} from 'react'
+import { useParams } from 'react-router-dom'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
 
 const ShowMed=()=>{
     const [val,getVal]=useState([])
     const [medId,setId]=useState('')
-    const [flg,setFlag]=useState("false")
+    const [error,setError]=useState('')
+    const [flg,setFlag]=useState(false)
     const [detail,setDet]=useState([])
+    const {id} = useParams();
+
 
     useEffect(()=>{
-        axiosConfig.get("manager/medicine")
-        .then((res) =>{
-            debugger
-            getVal(res.data)
-        },
-        (err) =>{
-            debugger
-            console.log(err)
-        })
+        if (id=="all")
+        {
+            axiosConfig.get("manager/medicine")
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+            })
+        }
+        else
+        {
+            axiosConfig.post(`manager/med/detail/${id}`)
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+                setError(err.response.data);
+
+            })
+        }
 
     },[])
 
@@ -40,10 +61,11 @@ const ShowMed=()=>{
         event.preventDefault();
         const data={m_id:medId}
         debugger
-        axiosConfig.post("manager/med/detail",data)
+        axiosConfig.post(`manager/med/detail/${medId}`,data)
         .then((suc)=>{
             debugger
-            setDet(suc.data)
+            setDet(suc.data[0])
+            console.log(detail.med_name)
            // window.location.href="/manager/medicine"
         },(er)=>{
             debugger
@@ -54,7 +76,10 @@ const ShowMed=()=>{
         <div>
             <ManagerHome/>
             <h3>Medicine List</h3>
-            <table border="1">
+            {error.msg 
+            ? <h3>{error.msg}</h3>
+            : <div>
+                <table border="1">
                 <tr>
                     <th>Medicine Id</th>
                     <th>Medicine Name</th>
@@ -80,7 +105,7 @@ const ShowMed=()=>{
                                 <td>
                                     {
                                     <form onSubmit={details}>
-                                        <input type="submit" onClick={(e)=>{setId(v.med_id);setFlag("true")}} name="details" value="Details"/>
+                                        <input type="submit" onClick={(e)=>{setId(v.med_id);setFlag(true)}} name="details" value="Details"/>
                                     </form>
                                     }
                                 </td>
@@ -95,7 +120,9 @@ const ShowMed=()=>{
                             </tr>
                         )
                     }
-            </table>
+            </table> 
+            </div>
+            }
             <br/><br/>
             <div>
             {
