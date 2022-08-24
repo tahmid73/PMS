@@ -9,6 +9,8 @@ const ShowCart=()=>{
     const [quantity,setQuantity]=useState([])
     const [medId,setMedId]=useState('')
     const [supId,setSupId]=useState('')
+    const [errs,setErrs] = useState("");
+
 
     useEffect(()=>{
         axiosConfig.get("manager/cart")
@@ -33,7 +35,7 @@ const ShowCart=()=>{
             debugger;
             window.location.href="/manager/cart";
         },(err)=>{
-            //setErrs(err.response.data);
+            setErrs(err.response.data);
             console.log(err);
             debugger;
         }
@@ -103,6 +105,8 @@ const ShowCart=()=>{
                     }
                     </tbody>
             </table>
+            {errs.msg}
+            {errs.quantity}
             <form onSubmit={viewPage}>
                 <br/><br/>
                 <input type="submit" name="confirm" value="Show Cart"/>
