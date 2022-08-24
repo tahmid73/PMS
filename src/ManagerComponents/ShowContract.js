@@ -1,23 +1,43 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
+import { useParams } from 'react-router-dom'
 
 const ShowContract=()=>{
     const [val,getVal]=useState([])
     const [cont_Id,setId]=useState('')
     const [flg,setFlag]=useState(false)
     const [detail,setDet]=useState([])
+    const [error,setError]=useState('')
+    const {id} = useParams();
 
     useEffect(()=>{
-        axiosConfig.get("manager/contract")
-        .then((res) =>{
-            debugger
-            getVal(res.data)
-        },
-        (err) =>{
-            debugger
-            console.log(err)
-        })
+        if (id=="all")
+        {
+            axiosConfig.get("manager/contract")
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+            })
+        }
+        else
+        {
+            axiosConfig.post(`manager/contract/detail/${id}`)
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+                setError(err.response.data);
+
+            })
+        }
 
     },[])
 
@@ -43,7 +63,8 @@ const ShowContract=()=>{
         axiosConfig.post(`manager/contract/detail/${cont_Id}`,data)
         .then((suc)=>{
             debugger
-            setDet(suc.data)
+            setDet(suc.data[0])
+            //setDet(suc.data)
             // window.location.href="/manager/medicine"
         },(er)=>{
             debugger
@@ -54,44 +75,50 @@ const ShowContract=()=>{
         <div>
             <ManagerHome/>
             <h3>Contract List</h3>
-            <table border="1">
-                <tr>
-                    <th>Contract Id</th>
-                    <th>Vendor Id</th>
-                    <th>Contract Status</th>
-                    <th>Medicine Name</th>
-                </tr>
-                    {
-                        val.map((v) =>
-                            <tr key={v.contract_id}>
-                                <td>{v.contract_id}</td>
-                                <td>{v.vendor_id}</td>
-                                <td>{v.contract_status}</td>
-                                <td>{v.med_name}</td>
-                                <td>{v.price_perUnit}</td>
-                                <td>
-                                    {
-                                    <form onSubmit={details}>
-                                        <input type="submit" onClick={(e)=>{setId(v.contract_id);setFlag(true)}} name="details" value="Details"/>
-                                    </form>
-                                    }
-                                </td>
-                                    {
-                                        v.contract_status=="Pending" 
-                                        ?<td>
-                                            {
-                                                <form onSubmit={deleteContract}>
-                                                    <input type="submit" onClick={(e)=>{setId(v.contract_id)}} 
-                                                    name="delete" value="Cancel"/>
-                                                </form>
-                                            }
-                                        </td>
-                                        :<td></td>
-                                    }
-                            </tr>
-                        )
-                    }
-            </table>
+            {error.msg 
+            ? <h3>{error.msg}</h3>
+            : <div>
+                <table border="1">
+                    <tr>
+                        <th>Contract Id</th>
+                        <th>Vendor Id</th>
+                        <th>Contract Status</th>
+                        <th>Medicine Name</th>
+                    </tr>
+                        {
+                            val.map((v) =>
+                                <tr key={v.contract_id}>
+                                    <td>{v.contract_id}</td>
+                                    <td>{v.vendor_id}</td>
+                                    <td>{v.contract_status}</td>
+                                    <td>{v.med_name}</td>
+                                    <td>{v.price_perUnit}</td>
+                                    <td>
+                                        {
+                                        <form onSubmit={details}>
+                                            <input type="submit" onClick={(e)=>{setId(v.contract_id);setFlag(true)}} name="details" value="Details"/>
+                                        </form>
+                                        }
+                                    </td>
+                                        {
+                                            v.contract_status=="Pending" 
+                                            ?<td>
+                                                {
+                                                    <form onSubmit={deleteContract}>
+                                                        <input type="submit" onClick={(e)=>{setId(v.contract_id)}} 
+                                                        name="delete" value="Cancel"/>
+                                                    </form>
+                                                }
+                                            </td>
+                                            :<td></td>
+                                        }
+                                </tr>
+                            )
+                        }
+                </table>
+            </div>
+            }
+            <br/><br/>
             <div>
             {
                 flg

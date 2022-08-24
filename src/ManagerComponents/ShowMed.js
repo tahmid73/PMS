@@ -77,7 +77,7 @@ const ShowMed=()=>{
             <ManagerHome/>
             <h3>Medicine List</h3>
             {error.msg 
-            ? <h3>error.msg</h3>
+            ? <h3>{error.msg}</h3>
             : <div>
                 <table border="1">
                 <tr>

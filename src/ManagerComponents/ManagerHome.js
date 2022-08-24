@@ -16,11 +16,11 @@ const ManagerHome=()=>{
             <center>
             <fieldset style={{width:"50%"}}>
                 <center>
-                    <button onClick={(e=>{window.location.href="/manager/user";})}>View User</button>
+                    <button onClick={(e=>{window.location.href="/manager/user/all";})}>View User</button>
                     <button onClick={(e=>{window.location.href="/manager/medicine/all";})}>View Medicine</button>
-                    <button onClick={(e=>{window.location.href="/manager/orders";})}>View Orders</button>
-                    <button onClick={(e=>{window.location.href="/manager/contract";})}>View Contract</button>
-                    <button onClick={(e=>{window.location.href="/manager/supply";})}>View Supply</button>
+                    <button onClick={(e=>{window.location.href="/manager/orders/all";})}>View Orders</button>
+                    <button onClick={(e=>{window.location.href="/manager/contract/all";})}>View Contract</button>
+                    <button onClick={(e=>{window.location.href="/manager/supply/all";})}>View Supply</button>
                     <button onClick={(e=>{window.location.href="/manager/query";})}>View Query</button>
                     <button onClick={(e=>{window.location.href="/manager/account";})}>View Account</button>
                     <button onClick={(e=>{window.location.href="/manager/cart";})}>Go to Cart</button>
@@ -28,6 +28,7 @@ const ManagerHome=()=>{
             </fieldset>
             <SearchBar/>
             </center>
+            <button onClick={(e=>{window.location.href="/manager/change";})}>Change Password</button>
         </div>
     )
 }

@@ -26,21 +26,37 @@ const SearchBar=()=>{
             {
                 window.location.href=`/manager/medicine/${val}`;
             }
-            axiosConfig.post("manager/search/user",data)
-            .then((res)=>{
-                debugger
-            },
-            (err)=>{
-                debugger
-                console.log(err)
-            })
+            else if (table=="contract")
+            {
+                window.location.href=`/manager/contract/${val}`;
+            }
+            else if (table=="supply")
+            {
+                window.location.href=`/manager/supply/${val}`;
+            }
+            else if (table=="order")
+            {
+                window.location.href=`/manager/order/${val}`;
+            }
+            else if (table=="user")
+            {
+                window.location.href=`/manager/user/${val}`;
+            }
+            // axiosConfig.post("manager/search/user",data)
+            // .then((res)=>{
+            //     debugger
+            // },
+            // (err)=>{
+            //     debugger
+            //     console.log(err)
+            // })
         
     }
     return(
         <div>
             <form onSubmit={search}>
                 <fieldset style={{width:"20%", position: 'absolute', right: 5, top: 5,}}>
-                    <legend>Search Bar</legend>
+                    <legend align="center"><b>Search Bar</b></legend>
                         Search in table: <br/>
                         <select name="search" placeholder="Search in table" onChange={(e)=>{setTable(e.target.value)}}>
                             <option value="user">User</option>

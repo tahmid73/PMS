@@ -1,23 +1,43 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
+import { useParams } from 'react-router-dom'
 
 const ShowSupply=()=>{
     const [val,getVal]=useState([])
     const [supplyId,setId]=useState('')
     const [flg,setFlag]=useState(false)
     const [detail,setDet]=useState([])
+    const [error,setError]=useState('')
+    const {id} = useParams();
 
     useEffect(()=>{
-        axiosConfig.get("manager/supply")
-        .then((res) =>{
-            debugger
-            getVal(res.data)
-        },
-        (err) =>{
-            debugger
-            console.log(err)
-        })
+        if (id=="all")
+        {
+            axiosConfig.get("manager/supply")
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+            })
+        }
+        else
+        {
+            axiosConfig.post(`manager/supply/detail/${id}`)
+            .then((res) =>{
+                debugger
+                getVal(res.data)
+            },
+            (err) =>{
+                debugger
+                console.log(err)
+                setError(err.response.data);
+
+            })
+        }
 
     },[])
 
@@ -28,7 +48,7 @@ const ShowSupply=()=>{
         axiosConfig.post(`manager/supply/detail/${supplyId}`,data)
         .then((suc)=>{
             debugger
-            setDet(suc.data)
+            setDet(suc.data[0])
            // window.location.href="/manager/medicine"
         },(er)=>{
             debugger
@@ -39,6 +59,9 @@ const ShowSupply=()=>{
         <div>
             <ManagerHome/>
             <h3>Supply List</h3>
+            {error.msg 
+            ? <h3>{error.msg}</h3>
+            : <div>
             <table border="1">
                 <tr>
                     <th>Vendor Id</th>
@@ -73,6 +96,8 @@ const ShowSupply=()=>{
                         )
                     }
             </table>
+            </div>
+            }
             <div>
             {
                 flg

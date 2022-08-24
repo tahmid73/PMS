@@ -31,6 +31,7 @@ import SetPassword from "./AllUserComponents/SetPassword";
 import SetCustomerPassword from "./CustomerComponents/SetCustomerPassword";
 import CustomerComplain from "./CustomerComponents/CustomerComplain";
 import CustomerChart from "./CustomerComponents/CustomerChart";
+import PassChange from "./ManagerComponents/PassChange";
 
 const Main=()=>{
     return(
@@ -65,16 +66,17 @@ const Main=()=>{
 
             {/* MANAGER ---> MANAGER */}
             <Route path="/manager/medicine/:id" element={<ShowMed/>}/>
-            <Route path="/manager/user" element={<ShowUser/>}/>
+            <Route path="/manager/user/:id" element={<ShowUser/>}/>
             <Route path="/manager/home" element={<ManagerHome/>}/>
-            <Route path="/manager/orders" element={<ShowOrders/>}/>
-            <Route path="/manager/supply" element={<ShowSupply/>}/>
+            <Route path="/manager/orders/:id" element={<ShowOrders/>}/>
+            <Route path="/manager/supply/:id" element={<ShowSupply/>}/>
             <Route path="/manager/cart" element={<ShowCart/>}/>
             <Route path="/manager/cart/table" element={<ViewCart/>}/>
-            <Route path="/manager/contract" element={<ShowContract/>}/>
+            <Route path="/manager/contract/:id" element={<ShowContract/>}/>
             <Route path="/manager/query" element={<ShowQuery/>}/>
             <Route path="/manager/account" element={<ShowAccount/>}/>
             <Route path="/manager/searching" element={<SearchBar/>}/>
+            <Route path="/manager/change" element={<PassChange/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>
