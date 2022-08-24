@@ -1,18 +1,27 @@
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import SearchBar from "./../ManagerComponents/SearchBar"
+import Logout from "./../AllUserComponents/Logout"
 
 
 const ManagerHome=()=>{
-    // const [val,getVal]=useState([])
-    // useEffect(()=>{
-    //     axiosConfig.()
-    // })
-    // return(
-
-    // )
+    const [val,getVal]=useState([])
+    useEffect(()=>{
+        axiosConfig.post("manager/propic")
+        .then
+        ((suc)=>{
+            getVal(suc.data)
+        },
+        (err)=>{
+            console.log(err)
+        }
+        )
+    },[])
     return(
         <div>
+            <Logout/>
+            <button onClick={(e=>{window.location.href="/manager/profile";})}>View Profile</button>
+            <button onClick={(e=>{window.location.href="/manager/Home";})}>Home</button>
             <center>
             <fieldset style={{width:"50%"}}>
                 <center>
@@ -28,7 +37,9 @@ const ManagerHome=()=>{
             </fieldset>
             <SearchBar/>
             </center>
+            <img width="275" height="250" src={`http://localhost:8000/storage/propics/${val.u_id}.jpg`} /><br/>
             <button onClick={(e=>{window.location.href="/manager/change";})}>Change Password</button>
+            <button onClick={(e=>{window.location.href="/manager/upload";})}>Change Profile Picture</button>
         </div>
     )
 }

@@ -1,10 +1,12 @@
-import axios from 'axios'
+import { useParams } from 'react-router-dom'
 import React,{useState,useEffect} from 'react'
 import axiosConfig from "./../AllUserComponents/axiosConfig"
 import ManagerHome from "./../ManagerComponents/ManagerHome"
 
 function ViewCart(){
-    const [val,getVal]=useState([]);
+    const [val,getVal]=useState([])
+    const [id,setId]=useState('')
+
 
     useEffect(()=>{
         axiosConfig.get("manager/cart/table")
@@ -28,10 +30,23 @@ function ViewCart(){
         },(err)=>{
 
         })
-        
     }
 
-    
+    const removeItem=(event)=>{
+        event.preventDefault();
+        const data={c_id:id};
+        debugger;
+        axiosConfig.post("manager/remove",data).then(
+            (succ)=>{
+                debugger;
+                window.location.href="/manager/cart/table";
+
+            },(err)=>{
+                debugger;
+                console.log(err);
+            }
+        )}
+
     return(
         <div>
             <ManagerHome/>
@@ -55,6 +70,13 @@ function ViewCart(){
                                 <td>{v.price_perUnit}</td>
                                 <td>{v.quantity}</td>
                                 <td>{v.total_price}</td>
+                                <td>
+                                    {
+                                    <form onSubmit={removeItem}>
+                                        <input type="submit" onClick={(e)=>{setId(v.cart_id)}} name="delete" value="Remove"/>
+                                    </form>
+                                    }
+                                </td>
                             </tr>
                         )
                     }

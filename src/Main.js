@@ -34,6 +34,8 @@ import CustomerChart from "./CustomerComponents/CustomerChart";
 import PassChange from "./ManagerComponents/PassChange";
 import CustomerChartMonthly from "./CustomerComponents/CustomerChartMonthly";
 import CustomerChartYearly from "./CustomerComponents/CustomerChartYearly";
+import ProPic from "./ManagerComponents/ProPic";
+import Profile from "./ManagerComponents/Profile";
 
 const Main=()=>{
     return(
@@ -81,6 +83,8 @@ const Main=()=>{
             <Route path="/manager/account" element={<ShowAccount/>}/>
             <Route path="/manager/searching" element={<SearchBar/>}/>
             <Route path="/manager/change" element={<PassChange/>}/>
+            <Route path="/manager/upload" element={<ProPic/>}/>
+            <Route path="/manager/profile" element={<Profile/>}/>
         </Routes>
         {/* <Logout/> */}
         </BrowserRouter>
