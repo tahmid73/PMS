@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axiosConfig from "./axiosConfig";
 import { useParams } from "react-router-dom";
+import Top from "./Top";
 
 const SetPassword=()=>{
     const [errs,setErrs] = useState("");
@@ -22,6 +23,7 @@ const SetPassword=()=>{
     }
     return(
         <div>
+            <h2><Top/></h2>
             <center>
             <br/><br/><br/><br/>
             <fieldset style={{width:"30%"}}>

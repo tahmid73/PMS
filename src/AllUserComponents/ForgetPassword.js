@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import axiosConfig from "./axiosConfig";
+import Top from "./Top";
 const ForgetPassword=()=>{
     const [email,setEmail] = useState("");
     const [errs,setErrs] = useState("");
@@ -17,16 +18,20 @@ const ForgetPassword=()=>{
         })
     }
     return(
-        <center>
-            <br/><br/><br/><br/>
-        <fieldset style={{width:"30%"}}>
-        <form onSubmit={sendOTP}>
-            <br/>
-            Email: <input onChange={(e)=>{setEmail(e.target.value)}} type="email" size={30} name="email" value={email}/> <br/><br/>
-            <input type="submit" value="SEND OTP CODE"/>
-        </form>                 
-        </fieldset>
-        </center>
+        <div>
+            <h2><Top/></h2>
+
+            <center>
+                <br/><br/><br/><br/>
+            <fieldset style={{width:"30%"}}>
+            <form onSubmit={sendOTP}>
+                <br/>
+                Email: <input onChange={(e)=>{setEmail(e.target.value)}} type="email" size={30} name="email" value={email}/> <br/><br/>
+                <input type="submit" value="SEND OTP CODE"/>
+            </form>                 
+            </fieldset>
+            </center>
+        </div>
     )
 }
 

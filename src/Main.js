@@ -32,6 +32,8 @@ import SetCustomerPassword from "./CustomerComponents/SetCustomerPassword";
 import CustomerComplain from "./CustomerComponents/CustomerComplain";
 import CustomerChart from "./CustomerComponents/CustomerChart";
 import PassChange from "./ManagerComponents/PassChange";
+import CustomerChartMonthly from "./CustomerComponents/CustomerChartMonthly";
+import CustomerChartYearly from "./CustomerComponents/CustomerChartYearly";
 
 const Main=()=>{
     return(
@@ -63,6 +65,8 @@ const Main=()=>{
             <Route path="/customer/return" element={<CustomerReturn/>}/>
             <Route path="/customer/complain" element={<CustomerComplain/>}/>
             <Route path="/customer/chart" element={<CustomerChart/>}/>
+            <Route path="/customer/chart/monthly" element={<CustomerChartMonthly/>}/>
+            <Route path="/customer/chart/yearly" element={<CustomerChartYearly/>}/>
 
             {/* MANAGER ---> MANAGER */}
             <Route path="/manager/medicine/:id" element={<ShowMed/>}/>
