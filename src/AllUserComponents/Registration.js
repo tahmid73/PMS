@@ -30,6 +30,7 @@ const Registration=()=>{
         )
     }
     return(
+
         <div>
         <h2><Top/></h2>
         <center>
@@ -62,6 +63,7 @@ const Registration=()=>{
             </fieldset>
         </center>
         </div>
+
     )
 }
 
