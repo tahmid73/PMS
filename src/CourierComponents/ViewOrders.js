@@ -6,6 +6,7 @@ import "../index.css"
 const ViewOrders=()=>{
     const [orders,setOrders]=useState([]);
     const [errs,setErrs] = useState({});
+    const [id,setId] = useState("");
     useEffect(()=>{
         axiosConfig.get("courier/orders").then((rsp)=>{
             setOrders(rsp.data);   
@@ -17,7 +18,7 @@ const ViewOrders=()=>{
         event.preventDefault();
         //const data={med_id:med_id,item_id:item_id};
         debugger;
-        axiosConfig.get("courier/").then(
+        axiosConfig.get(`/courier/${id}`).then(
             (succ)=>{
                 debugger;
                 window.location.href="/courier/ViewOrders";
@@ -56,9 +57,10 @@ const ViewOrders=()=>{
                         <td>{ order.delivery_time }</td>
                         <td>
                             {
-                                // <form onSubmit={acceptOrder}>
-                                //     <input type="submit"  name="accept" value="Accept"/>
-                                // </form>
+                                order.order_status=="pending" && 
+                                <form onSubmit={acceptOrder}>
+                                    <input type="submit" onClick={(e)=>{setId(order.order_id)}} name="accept" value="Accept"/>
+                                </form>
                             }
                         
                         </td>

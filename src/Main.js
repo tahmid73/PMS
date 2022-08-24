@@ -30,6 +30,9 @@ import VerifyOTP from "./AllUserComponents/VerifyOTP";
 import SetPassword from "./AllUserComponents/SetPassword";
 import SetCustomerPassword from "./CustomerComponents/SetCustomerPassword";
 import CustomerComplain from "./CustomerComponents/CustomerComplain";
+import CourierProfile from "./CourierComponents/CourierProfile";
+import CourierProfileUpdate from "./CourierComponents/CourierProfileUpdate";
+import CourierCashOut from "./CourierComponents/CourierCashOut";
 
 const Main=()=>{
     return(
@@ -47,6 +50,9 @@ const Main=()=>{
             <Route path="/courier/home" element={<LoggedCourierHome/>}/>
             <Route path="/courier/ViewOrders" element={<ViewOrders/>}/>
             <Route path="/courier/AcceptedOrders" element={<AcceptedOrders/>}/>
+            <Route path="/courier/profile" element={<CourierProfile/>}/>
+            <Route path="/courier/profile/modify" element={<CourierProfileUpdate/>}/>
+            <Route path="/courier/cashout" element={<CourierCashOut/>}/>
 
             {/* CUSTOMER ---> AYESHA */}
             <Route path="/customer/home" element={<CustomerHome/>}/>
